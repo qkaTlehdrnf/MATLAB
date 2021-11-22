@@ -1,4 +1,4 @@
-function [D] = Psensor(T,head,a,b,r,onum) % 맵과 방향 처음 위치를 받는다.
+function [D] = Psensor(T,head,a,b,r,long,onum) % 맵과 방향 처음 위치를 받는다.
  %T는 센서의 위치
  %head는 센서의 방향
  %onum은 장애물의 개수
@@ -29,7 +29,7 @@ function [D] = Psensor(T,head,a,b,r,onum) % 맵과 방향 처음 위치를 받는다.
             X = T(1) + 5*(i-1)*cos(head); % 5mm씩 각 센서에 주어진 방향으로 이동
             Y = T(2) + 5*(i-1)*sin(head);
 
-            if((X>=30)&&(X<=1070)&&(Y>=30)&&(Y<=1070))   % 벽 안에 있을 때
+            if((X>=30)&&(X<=long-30)&&(Y>=30)&&(Y<=long-30))   % 벽 안에 있을 때
                 [d, k, kk] = Mdistance(a,b,r,X,Y,onum,kk);
 
                 % 장애물 위험 감지(kk)
@@ -57,7 +57,7 @@ function [D] = Psensor(T,head,a,b,r,onum) % 맵과 방향 처음 위치를 받는다.
                     X = xx-t*cos(head);
                     Y = yy-t*sin(head);
 
-                    if((X>=30)&&(X<=1070)&&(Y>=30)&&(Y<=1070))&&(stop ==0)
+                    if((X>=30)&&(X<=long-30)&&(Y>=30)&&(Y<=long-30))&&(stop ==0)
                         C = C-t;
                         stop = 1;
                     end

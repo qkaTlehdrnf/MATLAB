@@ -1,11 +1,8 @@
 VLs = [0, 5, 10, 15]
 VRs = [0, 5, 10, 15]
-for a=VLs
-    for b=VRs
-        if a~=b
-            a,b
-        end
-
-        
-    end
+loss = 0
+if loss <0
+    angle = -loss:loss;
+    angle(randperm(numel(angle),uint16(loss^0.5)))
+    angle
 end
